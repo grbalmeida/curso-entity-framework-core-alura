@@ -1,11 +1,16 @@
-﻿namespace Alura.Loja.Testes.ConsoleApp
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Alura.Loja.Testes.ConsoleApp
 {
     class Program
     {
         static void Main(string[] args)
         {
             // GravarUsandoAdoNet();
-            GravarUsandoEntity();
+            // GravarUsandoEntity();
+            RecuperarProdutos();
         }
 
         private static void GravarUsandoAdoNet()
@@ -33,6 +38,25 @@
                 contexto.Produtos.Add(p);
                 contexto.SaveChanges();
             }
+        }
+
+        private static void RecuperarProdutos()
+        {
+            using (var contexto = new LojaContext())
+            {
+                IList<Produto> produtos = contexto.Produtos.ToList();
+
+                foreach (var produto in produtos)
+                {
+                    Console.WriteLine($"Id: {produto.Id}");
+                    Console.WriteLine($"Nome: {produto.Nome}");
+                    Console.WriteLine($"Categoria: {produto.Categoria}");
+                    Console.WriteLine($"Preço: {produto.Preco}");
+                    Console.WriteLine();
+                }
+            }
+
+            Console.ReadLine();
         }
 
     }
