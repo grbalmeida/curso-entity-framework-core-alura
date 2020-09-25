@@ -9,10 +9,10 @@ namespace Alura.Loja.Testes.ConsoleApp
         static void Main(string[] args)
         {
             // GravarUsandoAdoNet();
-            // GravarUsandoEntity();
-            // RecuperarProdutos();
-            // ExcluirProdutos();
-            // RecuperarProdutos();
+            GravarUsandoEntity();
+            RecuperarProdutos();
+            ExcluirProdutos();
+            RecuperarProdutos();
             AtualizarProduto();
         }
 
@@ -36,18 +36,17 @@ namespace Alura.Loja.Testes.ConsoleApp
             p.Categoria = "Livros";
             p.Preco = 19.89;
 
-            using (var contexto = new LojaContext())
+            using (var repo = new ProdutoDAOEntity())
             {
-                contexto.Produtos.Add(p);
-                contexto.SaveChanges();
+                repo.Adicionar(p);
             }
         }
 
         private static void RecuperarProdutos()
         {
-            using (var contexto = new LojaContext())
+            using (var repo = new ProdutoDAOEntity())
             {
-                IList<Produto> produtos = contexto.Produtos.ToList();
+                IList<Produto> produtos = repo.Produtos();
 
                 foreach (var produto in produtos)
                 {
@@ -64,18 +63,16 @@ namespace Alura.Loja.Testes.ConsoleApp
 
         private static void ExcluirProdutos()
         {
-            using (var contexto = new LojaContext())
+            using (var repo = new ProdutoDAOEntity())
             {
-                IList<Produto> produtos = contexto.Produtos.ToList();
+                IList<Produto> produtos = repo.Produtos();
 
                 Console.WriteLine($"Foram encontrados {produtos.Count} produto(s).");
 
                 foreach (var produto in produtos)
                 {
-                    contexto.Produtos.Remove(produto);
+                    repo.Remover(produto);
                 }
-
-                contexto.SaveChanges();
             }
 
             Console.ReadLine();
@@ -86,15 +83,13 @@ namespace Alura.Loja.Testes.ConsoleApp
             GravarUsandoEntity();
             RecuperarProdutos();
 
-            using (var contexto = new LojaContext())
+            using (var repo = new ProdutoDAO())
             {
-                Produto produto = contexto.Produtos.First();
+                Produto produto = repo.Produtos().First();
 
                 produto.Nome = "Casino Royale - Editado";
 
-                contexto.Produtos.Update(produto);
-
-                contexto.SaveChanges();
+                repo.Atualizar(produto);
             }
 
             RecuperarProdutos();
