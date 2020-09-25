@@ -11,8 +11,9 @@ namespace Alura.Loja.Testes.ConsoleApp
             // GravarUsandoAdoNet();
             // GravarUsandoEntity();
             // RecuperarProdutos();
-            ExcluirProdutos();
-            RecuperarProdutos();
+            // ExcluirProdutos();
+            // RecuperarProdutos();
+            AtualizarProduto();
         }
 
         private static void GravarUsandoAdoNet()
@@ -78,6 +79,25 @@ namespace Alura.Loja.Testes.ConsoleApp
             }
 
             Console.ReadLine();
+        }
+
+        private static void AtualizarProduto()
+        {
+            GravarUsandoEntity();
+            RecuperarProdutos();
+
+            using (var contexto = new LojaContext())
+            {
+                Produto produto = contexto.Produtos.First();
+
+                produto.Nome = "Casino Royale - Editado";
+
+                contexto.Produtos.Update(produto);
+
+                contexto.SaveChanges();
+            }
+
+            RecuperarProdutos();
         }
 
     }
