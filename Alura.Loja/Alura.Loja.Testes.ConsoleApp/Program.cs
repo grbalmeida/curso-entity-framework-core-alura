@@ -10,6 +10,8 @@ namespace Alura.Loja.Testes.ConsoleApp
         {
             // GravarUsandoAdoNet();
             // GravarUsandoEntity();
+            // RecuperarProdutos();
+            ExcluirProdutos();
             RecuperarProdutos();
         }
 
@@ -54,6 +56,25 @@ namespace Alura.Loja.Testes.ConsoleApp
                     Console.WriteLine($"Preço: {produto.Preco}");
                     Console.WriteLine();
                 }
+            }
+
+            Console.ReadLine();
+        }
+
+        private static void ExcluirProdutos()
+        {
+            using (var contexto = new LojaContext())
+            {
+                IList<Produto> produtos = contexto.Produtos.ToList();
+
+                Console.WriteLine($"Foram encontrados {produtos.Count} produto(s).");
+
+                foreach (var produto in produtos)
+                {
+                    contexto.Produtos.Remove(produto);
+                }
+
+                contexto.SaveChanges();
             }
 
             Console.ReadLine();
