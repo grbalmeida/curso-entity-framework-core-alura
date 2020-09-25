@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Infrastructure;
+﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
@@ -19,33 +20,38 @@ namespace Alura.Loja.Testes.ConsoleApp
 
                 var produtos = contexto.Produtos.ToList();
 
-                foreach (var produto in produtos)
+                ExibeEntries(contexto.ChangeTracker.Entries());
+
+                var novoProduto = new Produto
                 {
-                    Console.WriteLine(produto);
-                }
+                    Nome = "Desinfetante",
+                    Categoria = "Limpeza",
+                    Preco = 2.99
+                };
 
-                Console.WriteLine("===========================");
+                contexto.Produtos.Add(novoProduto);
 
-                foreach (var e in contexto.ChangeTracker.Entries())
-                {
-                    Console.WriteLine(e.State);
-                }
-
-                // UNCHANGED
-
-                var p1 = produtos.Last();
-                p1.Nome = "008 - O Espião Que Me Amava";
-
-                // MODIFIED
-
-                foreach (var e in contexto.ChangeTracker.Entries())
-                {
-                    Console.WriteLine(e.State);
-                }
+                ExibeEntries(contexto.ChangeTracker.Entries());
 
                 contexto.SaveChanges();
 
+                ExibeEntries(contexto.ChangeTracker.Entries());
+
                 Console.ReadLine();
+            }
+        }
+
+        private static void ExibeEntries(IEnumerable<EntityEntry> entries)
+        {
+            // Unchanged
+            // Modified
+            // Added
+
+            Console.WriteLine("===========================");
+
+            foreach (var e in entries)
+            {
+                Console.WriteLine(e.Entity.ToString() + " - " + e.State);
             }
         }
 
