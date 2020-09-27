@@ -10,6 +10,12 @@ Install-Package Microsoft.EntityFrameworkCore.SqlServer -Version 1.1
 Install-Package Microsoft.EntityFrameworkCore.Tools -Version 1.1.1
 ```
 
+### Comando para adicionar a migration Inicial
+
+```
+Add-Migration Inicial
+```
+
 ### Comando para adicionar a migration Unidade
 
 ```
