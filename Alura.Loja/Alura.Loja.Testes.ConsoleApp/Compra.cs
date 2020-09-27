@@ -7,5 +7,10 @@
         public int ProdutoId { get; internal set; }
         public Produto Produto { get; internal set; }
         public double Preco { get; internal set; }
+
+        public override string ToString()
+        {
+            return $"Compra de {Quantidade} {Produto.Unidade} do produto {Produto.Nome} a {Preco:c}";
+        }
     }
 }
