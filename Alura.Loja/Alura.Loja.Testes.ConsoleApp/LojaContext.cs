@@ -14,5 +14,14 @@ namespace Alura.Loja.Testes.ConsoleApp
 
             base.OnConfiguring(optionsBuilder);
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder
+                .Entity<PromocaoProduto>()
+                .HasKey(pp => new { pp.ProdutoId, pp.PromocaoId });
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
