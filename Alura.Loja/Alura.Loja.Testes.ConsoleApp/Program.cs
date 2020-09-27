@@ -25,6 +25,7 @@ namespace Alura.Loja.Testes.ConsoleApp
             using (var contexto = new LojaContext())
             {
                 contexto.Clientes.Add(fulano);
+                ExibeEntries(contexto.ChangeTracker.Entries());
                 contexto.SaveChanges();
             }
 

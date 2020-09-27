@@ -24,6 +24,10 @@ namespace Alura.Loja.Testes.ConsoleApp
 
             modelBuilder
                 .Entity<Endereco>()
+                .ToTable("Enderecos");
+
+            modelBuilder
+                .Entity<Endereco>()
                 .Property<int>("ClienteId");
 
             modelBuilder
