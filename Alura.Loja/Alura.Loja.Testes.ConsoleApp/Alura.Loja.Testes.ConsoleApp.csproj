@@ -196,6 +196,10 @@
     <Compile Include="Migrations\20200927031811_Promocao.designer.cs">
       <DependentUpon>20200927031811_Promocao.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20200927141821_Cliente.cs" />
+    <Compile Include="Migrations\20200927141821_Cliente.designer.cs">
+      <DependentUpon>20200927141821_Cliente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\LojaContextModelSnapshot.cs" />
     <Compile Include="Produto.cs" />
     <Compile Include="ProdutoDAO.cs" />

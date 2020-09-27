@@ -34,6 +34,12 @@ Add-Migration Compra
 Add-Migration Promocao
 ```
 
+### Comando para adicionar a migration Cliente
+
+```
+Add-Migration Cliente
+```
+
 ### Comando para atualizar o banco de dados de acordo com as migrações
 
 ```

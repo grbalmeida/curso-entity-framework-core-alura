@@ -22,6 +22,14 @@ namespace Alura.Loja.Testes.ConsoleApp
                 .Entity<PromocaoProduto>()
                 .HasKey(pp => new { pp.ProdutoId, pp.PromocaoId });
 
+            modelBuilder
+                .Entity<Endereco>()
+                .Property<int>("ClienteId");
+
+            modelBuilder
+                .Entity<Endereco>()
+                .HasKey("ClienteId");
+
             base.OnModelCreating(modelBuilder);
         }
     }
