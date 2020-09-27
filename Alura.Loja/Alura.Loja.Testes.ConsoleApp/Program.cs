@@ -11,6 +11,28 @@ namespace Alura.Loja.Testes.ConsoleApp
     {
         static void Main(string[] args)
         {
+            var fulano = new Cliente();
+            fulano.Nome = "Fulaninho de Tal";
+            fulano.EnderecoDeEntrega = new Endereco
+            {
+                Numero = 12,
+                Logradouro = "Rua dos Inválidos",
+                Complemento = "sobrado",
+                Bairro = "Centro",
+                Cidade = "Cidade"
+            };
+
+            using (var contexto = new LojaContext())
+            {
+                contexto.Clientes.Add(fulano);
+                contexto.SaveChanges();
+            }
+
+            Console.ReadLine();
+        }
+
+        private static void MuitosParaMuitos()
+        {
             var p1 = new Produto
             {
                 Nome = "Suco de Laranja",

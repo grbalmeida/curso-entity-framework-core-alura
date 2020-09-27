@@ -170,8 +170,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AtualizarProduto.cs" />
+    <Compile Include="Cliente.cs" />
     <Compile Include="Compra.cs" />
     <Compile Include="DeletedEDetached.cs" />
+    <Compile Include="Endereco.cs" />
     <Compile Include="ExcluirProdutos.cs" />
     <Compile Include="ExibeEntries.cs" />
     <Compile Include="GravarUsandoAdoNet.cs" />
