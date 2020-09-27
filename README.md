@@ -22,6 +22,12 @@ Add-Migration Inicial
 Add-Migration Unidade
 ```
 
+### Comando para adicionar a migration Compra
+
+```
+Add-Migration Compra
+```
+
 ### Comando para atualizar o banco de dados de acordo com as migrações
 
 ```

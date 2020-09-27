@@ -170,6 +170,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AtualizarProduto.cs" />
+    <Compile Include="Compra.cs" />
     <Compile Include="DeletedEDetached.cs" />
     <Compile Include="ExcluirProdutos.cs" />
     <Compile Include="ExibeEntries.cs" />
@@ -184,6 +185,10 @@
     <Compile Include="Migrations\20200927012206_Unidade.cs" />
     <Compile Include="Migrations\20200927012206_Unidade.designer.cs">
       <DependentUpon>20200927012206_Unidade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20200927014446_Compra.cs" />
+    <Compile Include="Migrations\20200927014446_Compra.designer.cs">
+      <DependentUpon>20200927014446_Compra.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\LojaContextModelSnapshot.cs" />
     <Compile Include="Produto.cs" />
