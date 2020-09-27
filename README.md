@@ -28,6 +28,12 @@ Add-Migration Unidade
 Add-Migration Compra
 ```
 
+### Comando para adicionar a migration Promocao
+
+```
+Add-Migration Promocao
+```
+
 ### Comando para atualizar o banco de dados de acordo com as migrações
 
 ```
