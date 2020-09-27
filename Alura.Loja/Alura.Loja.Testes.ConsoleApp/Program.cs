@@ -11,12 +11,37 @@ namespace Alura.Loja.Testes.ConsoleApp
     {
         static void Main(string[] args)
         {
+            using (var contexto2 = new LojaContext())
+            {
+                var serviceProvider = contexto2
+                    .GetInfrastructure();
+                var loggerFactory = serviceProvider.GetService<ILoggerFactory>();
+                loggerFactory.AddProvider(SqlLoggerProvider.Create());
+
+                var promocao = contexto2
+                    .Promocoes
+                    .Include(p => p.Produtos)
+                    .ThenInclude(pp => pp.Produto)
+                    .FirstOrDefault();
+
+                Console.WriteLine("\nMostrando os produtos da promoção..");
+
+                foreach (var item in promocao.Produtos)
+                {
+                    Console.WriteLine(item.Produto);
+                }
+            }
+
+            Console.ReadLine();
+        }
+
+        private static void IncluirPromocao()
+        {
             using (var contexto = new LojaContext())
             {
                 var serviceProvider = contexto.GetInfrastructure();
                 var loggerFactory = serviceProvider.GetService<ILoggerFactory>();
                 loggerFactory.AddProvider(SqlLoggerProvider.Create());
-
 
                 var promocao = new Promocao();
                 promocao.Descricao = "Queima Total Janeira 2017";
@@ -38,18 +63,6 @@ namespace Alura.Loja.Testes.ConsoleApp
                 ExibeEntries(contexto.ChangeTracker.Entries());
 
                 contexto.SaveChanges();
-            }
-
-            using (var contexto2 = new LojaContext())
-            {
-                var promocao = contexto2.Promocoes.FirstOrDefault();
-
-                Console.WriteLine("\nMostrando os produtos da promoção..");
-
-                foreach (var item in promocao.Produtos)
-                {
-                    Console.WriteLine(item.Produto);
-                }
             }
 
             Console.ReadLine();
