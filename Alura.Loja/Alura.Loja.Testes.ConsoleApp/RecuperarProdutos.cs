@@ -16,7 +16,7 @@ namespace Alura.Loja.Testes.ConsoleApp
                     Console.WriteLine($"Id: {produto.Id}");
                     Console.WriteLine($"Nome: {produto.Nome}");
                     Console.WriteLine($"Categoria: {produto.Categoria}");
-                    Console.WriteLine($"Preço: {produto.Preco}");
+                    Console.WriteLine($"Preço: {produto.PrecoUnitario}");
                     Console.WriteLine();
                 }
             }
